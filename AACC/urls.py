@@ -21,5 +21,6 @@ from dashboard.views import IndexView
 urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view())
+    path('', IndexView.as_view()),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
