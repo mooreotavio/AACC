@@ -1,22 +1,42 @@
 {% load tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AACC</title>
     {% tailwind_css %}
 </head>
 <body>
-    {% if alunos_list %}
-    <ul>
-    {% for aluno in alunos_list %}
-        <li><a href="/dashboard/{{aluno.id}}/">{{ aluno.matricula }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Sem alunos cadastrados.</p>
-{% endif %}
+    <header class="h-24 font-sans font-bold text-5xl pb-4 pt-4 pr-4 pl-4 text-white bg-gradient-to-r from-sky-500 to-blue-500 fixed top-0 left-0 right-0">
+        <img src="{% static 'logo.png' %}" height="100" width="200" class="flex absolute top-2">
+        <button class="absolute right-6 rounded-full  hover:bg-blue-300 text-5xl w-52 h-18 top-6 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-300"><a href="/admin">admin</a></button>
+    </header>
+    <div class="flex items-center justify-left h-fit overflow-y-auto pt-24 pb-24" >
+        
+        <div class="h-full pl-24 pt-6 pb-6">
+
+            {% if alunos_list %}
+                <div>
+                    <ul>
+                        
+                        {% for aluno in alunos_list %}
+                                <li><a href="/dashboard/{{aluno.id}}/" class="text-blue-700 hover:text-blue-900">{{ aluno.matricula }}</a></li>
+                                <br>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>Sem alunos cadastrados.</p>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
 </body>
+<footer class="flex bg-gradient-to-r from-sky-500 to-blue-500 h-24 w-fill flex grow fixed bottom-0 left-0 right-0 h-20 justify-center space-x-20">
+    <img src="{% static 'uenf.webp' %}" height="40" width="160">
+    <img src="{% static 'cc.webp' %}" height="40" width="160">
+</footer>
 </html>
